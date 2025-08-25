@@ -3,23 +3,13 @@ package com.example.meuprojetonativo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-
-    // Carrega a biblioteca .so na memória.
-    // Note que o nome é "meuprojetonativo", sem o "lib" e o ".so".
-    static {
-        try {
-            System.loadLibrary("meuprojetonativo");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-    // Declaração do método nativo que corresponde à função em Pascal.
-    public native String getMensagemDoPascal();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +17,22 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        Button button = findViewById(R.id.button);
-        // Chama a função Pascal como se fosse um método Java normal!
+        Button button = findViewById(R.id.btnSoma);
+        EditText txtPrimeiroNumero = findViewById(R.id.editTextPrimeiroNumero);
+        EditText txtSegundoNumero = findViewById(R.id.editTextSegundoNumero);
+        TextView txtResultado = findViewById(R.id.text_view_resultado);
+
+        NativeLib nativeLib = new NativeLib();
+
+        // Chama a função Pascal como se fosse uma função Java normal!
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                button.setText(getMensagemDoPascal());
+                try {
+                    txtResultado.setText(String.valueOf(nativeLib.soma(Integer.parseInt(txtPrimeiroNumero.getText().toString()), Integer.parseInt(txtSegundoNumero.getText().toString()))));
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }

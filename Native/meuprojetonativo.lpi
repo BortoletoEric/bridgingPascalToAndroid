@@ -21,7 +21,7 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="jniLibs/arm64-v8a/meuprojetonativo.so"/>
+            <Filename Value="jniLibs/arm64-v8a/libsoma.so"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -63,7 +63,7 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="jniLibs/arm64-v8a/meuprojetonativo.so"/>
+      <Filename Value="jniLibs\armeabi-v7a/libsoma.so"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>

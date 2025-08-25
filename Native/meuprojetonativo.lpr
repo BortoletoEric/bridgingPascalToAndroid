@@ -4,7 +4,7 @@ library meuprojetonativo;
 
 uses
   // Unidades necessárias para JNI, geralmente parte do FPC
-  jni;
+  SysUtils, Classes, jni;
 
 var
   javaVM : PJavaVM = nil;
@@ -12,6 +12,11 @@ var
 function getJstring(env: PJNIEnv; str : string): jstring;
 begin
   Result:=  env^.NewStringUTF(env, PChar(str));
+end;
+
+function soma(env: PJNIEnv; obj: JObject; a: JInt; b: JInt): JInt; cdecl;
+begin
+  Result := a + b;
 end;
 
 function hello(
@@ -36,7 +41,7 @@ end;
 
 exports
   JNI_OnLoad,
-  hello name 'Java_com_example_meuprojetonativo_MainActivity_getMensagemDoPascal';
+  soma name 'Java_com_example_meuprojetonativo_NativeLib_soma';
 
 begin
 end.
