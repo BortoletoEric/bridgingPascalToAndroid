@@ -19,6 +19,21 @@ begin
   Result := a + b;
 end;
 
+function subtrai(env: PJNIEnv; obj: JObject; a: JInt; b: JInt): JInt; cdecl;
+begin
+  Result := a - b;
+end;
+
+function multiplica(env: PJNIEnv; obj: JObject; a: JInt; b: JInt): JInt; cdecl;
+begin
+  Result := a * b;
+end;
+
+function divide(env: PJNIEnv; obj: JObject; a: JDouble; b: JDouble): JDouble; cdecl;
+begin
+  Result := a / b;
+end;
+
 function hello(
   env: PJNIEnv; // Ponteiro para o ambiente JNI
   thiz: jobject // Referência ao objeto Java que chamou o método
@@ -41,7 +56,10 @@ end;
 
 exports
   JNI_OnLoad,
-  soma name 'Java_com_example_meuprojetonativo_NativeLib_soma';
+  soma name 'Java_com_example_meuprojetonativo_NativeLib_soma',
+  subtrai name 'Java_com_example_meuprojetonativo_NativeLib_subtrai',
+  multiplica name 'Java_com_example_meuprojetonativo_NativeLib_multiplica',
+  divide name 'Java_com_example_meuprojetonativo_NativeLib_divide';
 
 begin
 end.
